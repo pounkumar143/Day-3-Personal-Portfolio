@@ -1,0 +1,97 @@
+1) ai_review.py:
+def ai_review_portfolio(portfolio):
+    """
+    Simulate AI review and feedback for a portfolio dictionary.
+    Returns: (score: int, feedback: str, suggestions: str)
+    """
+    # Example simple rubric: +1 for each filled section
+    score = 0
+    tips = []
+    sections = [
+        ('name', "Add your full name."),
+        ('summary', "Write a professional summary."),
+        ('email', "Enter your email."),
+        ('work_exp', "Add at least one work experience."),
+        ('education', "Add your education."),
+        ('skills_tech', "List your technical skills."),
+        ('projects', "Add a portfolio project.")
+    ]
+    for key, msg in sections:
+        if portfolio.get(key):
+            score += 1
+        else:
+            tips.append(msg)
+
+    score_out_of_10 = min(10, score + 3)  # Simulate more points for details
+
+    feedback = (
+        f"Portfolio Review Breakdown:\n"
+        f"- Name: {'✅' if portfolio.get('name') else '❌'}\n"
+        f"- Summary: {'✅' if portfolio.get('summary') else '❌'}\n"
+        f"- Email: {'✅' if portfolio.get('email') else '❌'}\n"
+        f"- Work Experience: {'✅' if portfolio.get('work_exp') else '❌'}\n"
+        f"- Education: {'✅' if portfolio.get('education') else '❌'}\n"
+        f"- Technical Skills: {'✅' if portfolio.get('skills_tech') else '❌'}\n"
+        f"- Projects: {'✅' if portfolio.get('projects') else '❌'}\n"
+    )
+    suggestions = "\n".join([f"• {tip}" for tip in tips]) if tips else "Great job! No major suggestions."
+
+    return score_out_of_10, feedback, suggestions
+    pdf.set_font("Arial", "B", 12)
+    pdf.cell(0, 8, "Testimonials", ln=True)     
+
+2) logger.py:
+import datetime
+import os
+
+def log_event(username, action, details=""):
+    """
+    Log a user or system event to 'activity.log' with timestamp.
+    """
+    timestamp = datetime.datetime.now().isoformat(sep=' ', timespec='seconds')
+    log_line = f"{timestamp} | {username} | {action} | {details}\n"
+    log_path = os.path.join(os.path.dirname(__file__), "..", "activity.log")
+    with open(os.path.abspath(log_path), "a", encoding="utf-8") as logfile:
+        logfile.write(log_line)
+
+3) ai_review.py
+def ai_review_portfolio(portfolio):
+    """
+    Simulate AI review and feedback for a portfolio dictionary.
+    Returns: (score: int, feedback: str, suggestions: str)
+    """
+    # Example simple rubric: +1 for each filled section
+    score = 0
+    tips = []
+    sections = [
+        ('name', "Add your full name."),
+        ('summary', "Write a professional summary."),
+        ('email', "Enter your email."),
+        ('work_exp', "Add at least one work experience."),
+        ('education', "Add your education."),
+        ('skills_tech', "List your technical skills."),
+        ('projects', "Add a portfolio project.")
+    ]
+    for key, msg in sections:
+        if portfolio.get(key):
+            score += 1
+        else:
+            tips.append(msg)
+
+    score_out_of_10 = min(10, score + 3)  # Simulate more points for details
+
+    feedback = (
+        f"Portfolio Review Breakdown:\n"
+        f"- Name: {'✅' if portfolio.get('name') else '❌'}\n"
+        f"- Summary: {'✅' if portfolio.get('summary') else '❌'}\n"
+        f"- Email: {'✅' if portfolio.get('email') else '❌'}\n"
+        f"- Work Experience: {'✅' if portfolio.get('work_exp') else '❌'}\n"
+        f"- Education: {'✅' if portfolio.get('education') else '❌'}\n"
+        f"- Technical Skills: {'✅' if portfolio.get('skills_tech') else '❌'}\n"
+        f"- Projects: {'✅' if portfolio.get('projects') else '❌'}\n"
+    )
+    suggestions = "\n".join([f"• {tip}" for tip in tips]) if tips else "Great job! No major suggestions."
+
+    return score_out_of_10, feedback, suggestions
+    pdf.set_font("Arial", "B", 12)
+    pdf.cell(0, 8, "Testimonials", ln=True)     
